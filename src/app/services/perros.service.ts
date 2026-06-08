@@ -56,13 +56,15 @@ export class PerrosService {
   ];
 
   todas(): Perro[] {
-    return [];
+    return this.perros;
   }
 
   obtener(id: string): Perro | undefined {
-    return undefined;
+    return this.perros.find((perro) => perro.id === Number(id));;
   }
 
   agregar(perro: Perro): void {
+    perro.id = this.perros.length + 1
+    this.perros.push(perro);
   }
 }

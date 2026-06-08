@@ -1,8 +1,41 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Galería</ion-title>
+    <ion-title>Galería de perritos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+
+  <ion-card 
+    *ngFor="let perro of perros" 
+    [routerLink]="['/detalle', perro.id]">
+
+    <img [src]="perro.foto" [alt]="perro.nombre">
+
+    <ion-card-header>
+      <ion-card-title>{{ perro.nombre }}</ion-card-title>
+      <ion-card-subtitle>
+        {{ perro.raza }} - {{ perro.edad }}
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>{{ perro.descripcion }}</p>
+
+      <p>
+        <strong>Sexo:</strong> {{ perro.sexo }}
+      </p>
+
+      <p>
+        <strong>Tamaño:</strong> {{ perro.tamano }}
+      </p>
+
+      <p>
+        <strong>Estado:</strong>
+        {{ perro.adoptado ? 'Adoptado' : 'Disponible' }}
+      </p>
+    </ion-card-content>
+
+  </ion-card>
+
 </ion-content>

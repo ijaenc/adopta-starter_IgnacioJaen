@@ -1,11 +1,31 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+
+import { Perro, PerrosService } from '../../services/perros.service';
 
 @Component({
   selector: 'app-detalle',
-  templateUrl: 'detalle.page.html',
-  styleUrls: ['detalle.page.scss'],
+  templateUrl: './detalle.page.html',
+  styleUrls: ['./detalle.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent],
+  imports: [CommonModule, IonicModule],
 })
-export class DetallePage {}
+export class DetallePage {
+
+  perro?: Perro;
+
+  constructor(
+    private route: ActivatedRoute,
+    private perrosService: PerrosService
+  ) {}
+
+  ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if (id !== null) {
+      this.perro = this.perrosService.obtener(id);
+    }
+  }
+}

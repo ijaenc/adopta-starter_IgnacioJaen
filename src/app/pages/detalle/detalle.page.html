@@ -5,4 +5,26 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <div *ngIf="perro">
+    <ion-card>
+      <img [src]="perro.foto" [alt]="perro.nombre" />
+
+      <ion-card-header>
+        <ion-card-title>{{ perro.nombre }}</ion-card-title>
+        <ion-card-subtitle>{{ perro.raza }} - {{ perro.edad }}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>{{ perro.descripcion }}</p>
+        <p><strong>Sexo:</strong> {{ perro.sexo }}</p>
+        <p><strong>Tamaño:</strong> {{ perro.tamano }}</p>
+        <p><strong>Vacunada:</strong> {{ perro.vacunada ? 'Sí' : 'No' }}</p>
+        <p><strong>Estado:</strong> {{ perro.adoptado ? 'Adoptado' : 'Disponible' }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div *ngIf="!perro">
+    <p>No se encontró el perrito.</p>
+  </div>
 </ion-content>
